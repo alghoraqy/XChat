@@ -109,7 +109,7 @@ class SignUpScreen extends StatelessWidget {
                                 height: rhight(context) / 40,
                               ),
                               MyTextFormField(
-                                labeltext: 'Confirm Passord',
+                                labeltext: 'Confirm Password',
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Confirm passord must not be empty';
