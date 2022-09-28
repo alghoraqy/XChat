@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:xchat/config/routes/app_routes.dart';
+import 'package:xchat/core/network/local/cach_helper.dart';
 import 'package:xchat/core/utils/shared_methods.dart';
 import 'package:xchat/core/utils/app_colors.dart';
 import 'package:xchat/core/utils/app_textstyle.dart';
@@ -89,6 +90,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             child: SwipeableButtonView(
                                 onFinish: () async {
                                   debugPrint('open');
+                                  SaveDataToPrefs.saveData(
+                                      key: 'onBoard', value: true);
                                   await navigateAndFinish(
                                       context, Routes.loginScreen);
                                 },

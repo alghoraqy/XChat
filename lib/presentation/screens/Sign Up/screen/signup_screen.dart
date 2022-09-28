@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:xchat/config/routes/app_routes.dart';
+import 'package:xchat/core/network/local/cach_helper.dart';
 import 'package:xchat/core/utils/app_strings.dart';
 import 'package:xchat/core/utils/app_textstyle.dart';
 import 'package:xchat/core/utils/responsive.dart';
@@ -12,6 +11,8 @@ import 'package:xchat/presentation/components/button.dart';
 import 'package:xchat/presentation/components/text_form_field.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/cubit/signup_cubit.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/cubit/signup_states.dart';
+
+import '../../../../core/utils/constances.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -50,10 +51,29 @@ class SignUpScreen extends StatelessWidget {
               ),
               Expanded(
                 child: SingleChildScrollView(
+                  padding: EdgeInsets.only(top: rhight(context) / 80),
                   child: BlocProvider(
                     create: (context) => SignUpCubit(),
                     child: BlocConsumer<SignUpCubit, SignUpStates>(
-                      listener: (context, state) {},
+                      listener: (context, state) {
+                        if (state is SignUpErrorState) {
+                          showToast(message: state.message, color: Colors.red);
+                        } else if (state is CreateUserSuccessState) {
+                          SaveDataToPrefs.saveData(key: 'uId', value: state.uId)
+                              .then((value) {
+                            Constances.uId = state.uId;
+                            showToast(
+                                message: 'User Created Successfully',
+                                color: Colors.green);
+                            navigateAndFinish(context, Routes.homeScreen);
+                          });
+                        } else {
+                          if (state is CreateUserErrorState) {
+                            showToast(
+                                message: state.message, color: Colors.red);
+                          }
+                        }
+                      },
                       builder: (context, state) {
                         SignUpCubit cubit = SignUpCubit.get(context);
                         return Form(
@@ -69,6 +89,7 @@ class SignUpScreen extends StatelessWidget {
                                   return null;
                                 },
                                 keyboardType: TextInputType.name,
+                                controller: cubit.userNameController,
                               ),
                               SizedBox(
                                 height: rhight(context) / 40,
@@ -86,6 +107,22 @@ class SignUpScreen extends StatelessWidget {
                                   }
                                 },
                                 keyboardType: TextInputType.name,
+                                controller: cubit.emailController,
+                              ),
+                              SizedBox(
+                                height: rhight(context) / 40,
+                              ),
+                              MyTextFormField(
+                                labeltext: 'Phone',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'phone must not be empty';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                keyboardType: TextInputType.phone,
+                                controller: cubit.phoneController,
                               ),
                               SizedBox(
                                 height: rhight(context) / 40,
@@ -104,6 +141,8 @@ class SignUpScreen extends StatelessWidget {
                                   }
                                 },
                                 keyboardType: TextInputType.name,
+                                isSecure: true,
+                                controller: cubit.passwordController,
                               ),
                               SizedBox(
                                 height: rhight(context) / 40,
@@ -113,25 +152,46 @@ class SignUpScreen extends StatelessWidget {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Confirm passord must not be empty';
+                                  } else {
+                                    if (value !=
+                                        cubit.passwordController.text) {
+                                      return 'Not Equal Password';
+                                    }
                                   }
                                   return null;
                                 },
                                 keyboardType: TextInputType.name,
+                                isSecure: true,
+                                controller: cubit.confirmPasswordController,
                               ),
                               SizedBox(
                                 height: rhight(context) / 20,
                               ),
                               MyButton(
-                                child: Text(
-                                  AppStrings.signUp,
-                                  style: AppTextStyle.buttonStyle,
-                                ),
-                                onPressed: () {},
+                                child: state is SignUpLoadingState
+                                    ? Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    : Text(
+                                        AppStrings.signUp,
+                                        style: AppTextStyle.buttonStyle,
+                                      ),
+                                onPressed: () {
+                                  if (cubit.formKey.currentState!.validate()) {
+                                    cubit.signUp(
+                                        userName: cubit.userNameController.text,
+                                        email: cubit.emailController.text,
+                                        password: cubit.passwordController.text,
+                                        phone: cubit.phoneController.text);
+                                  }
+                                },
                                 hight: rhight(context) / 14,
                                 width: rwidth(context) / 1.2,
                               ),
                               SizedBox(
-                                height: rhight(context) / 30,
+                                height: rhight(context) / 80,
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(

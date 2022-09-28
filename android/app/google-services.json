@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "258154713473",
+    "project_id": "xchat-aef44",
+    "storage_bucket": "xchat-aef44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258154713473:android:b469a26d3d1d600a1b1880",
+        "android_client_info": {
+          "package_name": "com.example.xchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258154713473-e4qjdau19d5dbtdu549sc29911ps3rbk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.xchat",
+            "certificate_hash": "36c6c85915bee07a31f06d95e1691b8e71f012d9"
+          }
+        },
+        {
+          "client_id": "258154713473-v4d5mol1mhghm1tg9vbc71l81a3uemeq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChmXul4JRYY8m1lBOR9pgwR1yY_yAI7eI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258154713473-v4d5mol1mhghm1tg9vbc71l81a3uemeq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,3 +10,16 @@ abstract class LoginStates extends Equatable {
 class LoginInitState extends LoginStates {}
 
 class LoginChangeSecure extends LoginStates {}
+
+//// Login FireBase
+class LoginLoadingState extends LoginStates {}
+
+class LoginSuccessState extends LoginStates {
+  final String uId;
+  const LoginSuccessState({required this.uId});
+}
+
+class LoginErrorState extends LoginStates {
+  final String message;
+  const LoginErrorState({required this.message});
+}

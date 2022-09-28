@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:xchat/core/utils/app_strings.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/screen/signup_screen.dart';
+import 'package:xchat/presentation/screens/home/screen/home_screen.dart';
 import 'package:xchat/presentation/screens/login/screen/login_screen.dart';
 import 'package:xchat/presentation/screens/onboard_screen.dart';
 
 class Routes {
-  static const String initialRoute = '/';
+  static const String initialRoute = 'onBoarding';
   static const String loginScreen = 'loginScreen';
   static const String signUpScreen = 'SignUpScreen';
+  static const String homeScreen = 'HomeScreen';
 }
 
 class AppRoutes {
@@ -21,6 +23,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) => const LoginScreen());
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: (context) => const SignUpScreen());
+      case Routes.homeScreen:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
 
       default:
         return undefinedRoute();

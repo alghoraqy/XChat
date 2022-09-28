@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:xchat/config/routes/app_routes.dart';
+import 'package:xchat/core/network/local/cach_helper.dart';
 import 'package:xchat/core/utils/app_colors.dart';
 import 'package:xchat/core/utils/app_strings.dart';
 import 'package:xchat/core/utils/app_textstyle.dart';
+import 'package:xchat/core/utils/constances.dart';
 import 'package:xchat/core/utils/responsive.dart';
 import 'package:xchat/core/utils/shared_methods.dart';
 import 'package:xchat/presentation/components/components.dart';
@@ -37,8 +39,22 @@ class LoginScreen extends StatelessWidget {
               return LoginCubit();
             },
             child: BlocConsumer<LoginCubit, LoginStates>(
-              listener: (context, satets) {},
-              builder: (context, states) {
+              listener: (context, state) {
+                if (state is LoginSuccessState) {
+                  SaveDataToPrefs.saveData(key: 'uId', value: state.uId)
+                      .then((value) {
+                    Constances.uId = state.uId;
+                    print(Constances.uId);
+                    showToast(message: 'Login Success', color: Colors.green);
+                    navigateAndFinish(context, Routes.homeScreen);
+                  });
+                } else {
+                  if (state is LoginErrorState) {
+                    showToast(message: state.message, color: Colors.red);
+                  }
+                }
+              },
+              builder: (context, state) {
                 LoginCubit cubit = LoginCubit.get(context);
                 return Expanded(
                   child: SingleChildScrollView(
@@ -81,6 +97,7 @@ class LoginScreen extends StatelessWidget {
                                     }
                                   },
                                   keyboardType: TextInputType.emailAddress,
+                                  controller: cubit.emailController,
                                 ),
                                 SizedBox(
                                   height: rhight(context) / 50,
@@ -111,17 +128,31 @@ class LoginScreen extends StatelessWidget {
                                       color: AppColors.baseColor,
                                     ),
                                   ),
+                                  controller: cubit.passwordController,
                                 ),
                                 SizedBox(
                                   height: rhight(context) / 20,
                                 ),
                                 MyButton(
-                                  child: Text(
-                                    AppStrings.login,
-                                    style: AppTextStyle.onBoardingText
-                                        .copyWith(color: Colors.white),
-                                  ),
-                                  onPressed: () {},
+                                  child: state is LoginLoadingState
+                                      ? Center(
+                                          child: CircularProgressIndicator(
+                                            color: Colors.white,
+                                          ),
+                                        )
+                                      : Text(
+                                          AppStrings.login,
+                                          style: AppTextStyle.buttonStyle,
+                                        ),
+                                  onPressed: () {
+                                    if (cubit.formKey.currentState!
+                                        .validate()) {
+                                      cubit.login(
+                                          email: cubit.emailController.text,
+                                          password:
+                                              cubit.passwordController.text);
+                                    }
+                                  },
                                   hight: rhight(context) / 14,
                                   width: rwidth(context) / 1.2,
                                 ),
@@ -132,7 +163,7 @@ class LoginScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'New User ?',
+                                      'New User?',
                                       style: AppTextStyle.onBoardingText2
                                           .copyWith(
                                               fontWeight: FontWeight.w500),
