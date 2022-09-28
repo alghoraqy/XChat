@@ -5,7 +5,7 @@ import 'package:xchat/core/network/local/cach_helper.dart';
 import 'package:xchat/core/utils/constances.dart';
 import 'package:xchat/presentation/screens/home/screen/home_screen.dart';
 import 'package:xchat/presentation/screens/login/screen/login_screen.dart';
-import 'package:xchat/presentation/screens/onboard_screen.dart';
+import 'package:xchat/presentation/screens/OnBoard/onboard_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

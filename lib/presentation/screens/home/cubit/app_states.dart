@@ -8,3 +8,5 @@ abstract class AppStates extends Equatable {
 class AppInitState extends AppStates {}
 
 class ChangeState extends AppStates {}
+
+class ChangeBottomNavState extends AppStates {}

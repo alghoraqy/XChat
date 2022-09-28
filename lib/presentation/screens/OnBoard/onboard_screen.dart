@@ -8,7 +8,7 @@ import 'package:xchat/core/utils/app_textstyle.dart';
 import 'package:xchat/core/utils/assets_manager.dart';
 import 'package:xchat/core/utils/responsive.dart';
 
-import '../../core/utils/app_strings.dart';
+import '../../../core/utils/app_strings.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
