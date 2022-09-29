@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:xchat/core/utils/app_colors.dart';
+import 'package:xchat/core/utils/hex_color.dart';
 
 class AppTextStyle {
   static const TextStyle textAppNamestyle = TextStyle(
@@ -12,4 +14,22 @@ class AppTextStyle {
       TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.grey);
   static const TextStyle buttonStyle =
       TextStyle(fontSize: 25, fontWeight: FontWeight.w500, color: Colors.white);
+
+  static TextStyle title = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textColor,
+  );
+
+  static TextStyle messageTitle = TextStyle(
+    fontSize: 19,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textColor,
+  );
+
+  static TextStyle messageBody = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    color: Colors.grey.shade500,
+  );
 }

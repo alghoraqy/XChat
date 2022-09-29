@@ -20,19 +20,6 @@ class HomeScreen extends StatelessWidget {
           AppCubit cubit = AppCubit.get(context);
           return Scaffold(
             backgroundColor: Colors.white,
-            appBar: AppBar(
-              systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent),
-              backgroundColor: Colors.white,
-              elevation: 0,
-              actions: [
-                IconButton(
-                    onPressed: () {
-                      AppCubit.get(context).closeApp(context);
-                    },
-                    icon: const Icon(Icons.close))
-              ],
-            ),
             body: cubit.screens[cubit.startIndex],
             bottomNavigationBar: CurvedNavigationBar(
               items: [
@@ -58,8 +45,8 @@ class HomeScreen extends StatelessWidget {
                 cubit.changeBottomNav(value);
               },
               color: AppColors.baseColor,
-              backgroundColor: Colors.white,
-              buttonBackgroundColor: Colors.white,
+              backgroundColor: Colors.blue.shade50,
+              buttonBackgroundColor: Colors.transparent,
               animationDuration: const Duration(milliseconds: 200),
             ),
           );

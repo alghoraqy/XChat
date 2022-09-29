@@ -14,4 +14,7 @@ class AppStrings {
   static const String loginNow = 'Login Now';
   static const String signUp = 'SignUp';
   static const String signUptext = 'SignUp to connect your friends';
+
+  /// Messages Screen
+  static const String messages = 'Messages';
 }

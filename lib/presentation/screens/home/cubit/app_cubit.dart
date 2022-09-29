@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:xchat/core/utils/app_colors.dart';
+import 'package:xchat/models/message_model.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_states.dart';
 import 'package:xchat/presentation/screens/home/screen/HomeScreens/messages_screen.dart';
 import 'package:xchat/presentation/screens/home/screen/HomeScreens/profile_screen.dart';
@@ -22,23 +23,8 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  // List<Widget> navItems = [
-  //   Icon(
-  //     Icons.people_alt_outlined,
-  //     size: 30,
-  //     color: startIndex == 0 ? Colors.black : Colors.white,
-  //   ),
-  //   Icon(
-  //     Icons.message_outlined,
-  //     size: 30,
-  //     color: startIndex == 1 ? Colors.black : Colors.white,
-  //   ),
-  //   Icon(
-  //     Icons.person_2_outlined,
-  //     size: 30,
-  //     color: startIndex == 2 ? Colors.black : Colors.white,
-  //   ),
-  // ];
+  TextEditingController searchController = TextEditingController();
+
   int startIndex = 1;
   void changeBottomNav(int index) {
     emit(AppInitState());
@@ -50,5 +36,36 @@ class AppCubit extends Cubit<AppStates> {
     const UsersScreen(),
     const MessagesScreen(),
     const ProfileScreen(),
+  ];
+
+  List<MessageModel> messages = [
+    MessageModel(
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4rsSzLimlQyniEtUV4-1raljzFhS45QBeAw&usqp=CAU',
+      name: 'mahmoud elsayed',
+      messageBody: 'asssssssssda asdasd asdasd asda',
+      lastDate: '5 days',
+    ),
+    MessageModel(
+      image:
+          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+      name: 'marwa mohamed',
+      messageBody: 'asdasd dasdas asda',
+      lastDate: '18 days',
+    ),
+    MessageModel(
+      image:
+          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+      name: 'ahmed mohamed',
+      messageBody: 'asddddddddasd asdasd ',
+      lastDate: '10 days',
+    ),
+    MessageModel(
+      image:
+          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+      name: 'ahmed mohamed',
+      messageBody: 'asddddddddasd asdasd ',
+      lastDate: '10 days',
+    ),
   ];
 }
