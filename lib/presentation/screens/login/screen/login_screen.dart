@@ -25,6 +25,7 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       //  resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: const SizedBox(),
         backgroundColor: AppColors.baseColor,
         elevation: 0,
         systemOverlayStyle:
@@ -65,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                           style: AppTextStyle.textAppNamestyle
                               .copyWith(color: Colors.black),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Text(
@@ -135,12 +136,12 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 MyButton(
                                   child: state is LoginLoadingState
-                                      ? Center(
+                                      ? const Center(
                                           child: CircularProgressIndicator(
                                             color: Colors.white,
                                           ),
                                         )
-                                      : Text(
+                                      : const Text(
                                           AppStrings.login,
                                           style: AppTextStyle.buttonStyle,
                                         ),

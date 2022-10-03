@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:xchat/core/utils/app_colors.dart';
 import 'package:xchat/core/utils/app_strings.dart';
 import 'package:xchat/core/utils/app_textstyle.dart';
@@ -32,16 +33,6 @@ class MessagesScreen extends StatelessWidget {
               style: AppTextStyle.title,
             ),
             elevation: 0,
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    AppCubit.get(context).closeApp(context);
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                    color: Colors.black,
-                  ))
-            ],
           ),
           body: Column(
             children: [
@@ -70,22 +61,32 @@ class MessagesScreen extends StatelessWidget {
                 height: rhight(context) / 50,
               ),
               Expanded(
-                child: ListView.separated(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: rwidth(context) / 30),
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return MessageComponent(
-                      model: cubit.messages[index],
-                      onPressed: () {},
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(
-                      height: rhight(context) / 80,
-                    );
-                  },
-                  itemCount: cubit.messages.length,
+                child: AnimationLimiter(
+                  child: ListView.separated(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: rwidth(context) / 30),
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return AnimationConfiguration.staggeredList(
+                        position: index,
+                        duration: const Duration(milliseconds: 400),
+                        child: ScaleAnimation(
+                          child: FadeInAnimation(
+                            child: MessageComponent(
+                              model: cubit.messages[index],
+                              onPressed: () {},
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: rhight(context) / 80,
+                      );
+                    },
+                    itemCount: cubit.messages.length,
+                  ),
                 ),
               ),
             ],

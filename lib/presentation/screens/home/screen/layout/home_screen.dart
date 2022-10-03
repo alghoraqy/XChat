@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                   color: cubit.startIndex == 1 ? Colors.black : Colors.white,
                 ),
                 Icon(
-                  Icons.person_2_outlined,
+                  Icons.person_outlined,
                   size: 30,
                   color: cubit.startIndex == 2 ? Colors.black : Colors.white,
                 ),

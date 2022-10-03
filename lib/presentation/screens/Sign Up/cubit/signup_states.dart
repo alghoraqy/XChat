@@ -26,3 +26,7 @@ class CreateUserErrorState extends SignUpStates {
   final String message;
   const CreateUserErrorState({required this.message});
 }
+
+class PickProfileImageSuccess extends SignUpStates {}
+
+class PickProfileImageError extends SignUpStates {}

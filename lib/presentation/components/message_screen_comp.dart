@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:xchat/models/message_model.dart';
-
 import '../../core/utils/app_colors.dart';
 import '../../core/utils/app_textstyle.dart';
 import '../../core/utils/assets_manager.dart';
@@ -56,20 +53,10 @@ class MessageComponent extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20), color: Colors.white),
             child: Row(
               children: [
-                Container(
-                  margin: EdgeInsets.only(left: 2),
-                  height: rhight(context) / 8,
-                  width: rwidth(context) / 4,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  child: FadeInImage(
-                      placeholder: AssetImage(ImgAsset.loading),
-                      placeholderFit: BoxFit.cover,
-                      image: NetworkImage(model.image),
-                      fit: BoxFit.cover),
-                ),
+                CircleImage(
+                    image: model.image,
+                    hight: rhight(context) / 8,
+                    width: rwidth(context) / 4),
                 SizedBox(
                   width: rwidth(context) / 50,
                 ),
@@ -122,6 +109,35 @@ class MessageComponent extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class CircleImage extends StatelessWidget {
+  final String image;
+  final double hight;
+  final double width;
+  double? margin;
+  CircleImage(
+      {required this.image,
+      required this.hight,
+      required this.width,
+      this.margin});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: margin ?? 2),
+      height: hight,
+      width: width,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: FadeInImage(
+          placeholder: AssetImage(ImgAsset.loading),
+          placeholderFit: BoxFit.cover,
+          image: NetworkImage(image),
+          fit: BoxFit.cover),
     );
   }
 }

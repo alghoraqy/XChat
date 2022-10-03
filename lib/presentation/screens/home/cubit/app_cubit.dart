@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:xchat/core/utils/app_colors.dart';
 import 'package:xchat/models/message_model.dart';
+import 'package:xchat/models/user_model.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_states.dart';
 import 'package:xchat/presentation/screens/home/screen/HomeScreens/messages_screen.dart';
 import 'package:xchat/presentation/screens/home/screen/HomeScreens/profile_screen.dart';
@@ -16,8 +17,9 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
-  void closeApp(context) {
+  void logOut(context) {
     ClearDataFromPrefs.clearData().then((value) {
+      emit(AppInitState());
       navigateAndFinish(context, Routes.initialRoute);
       emit(ChangeState());
     });
@@ -67,5 +69,44 @@ class AppCubit extends Cubit<AppStates> {
       messageBody: 'asddddddddasd asdasd ',
       lastDate: '10 days',
     ),
+  ];
+
+  List<PeopleModel> people = [
+    PeopleModel(
+        image:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4rsSzLimlQyniEtUV4-1raljzFhS45QBeAw&usqp=CAU',
+        name: 'Mahmoud Alghoraqy'),
+    PeopleModel(
+        image:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        name: 'Elsayed Ahmed'),
+    PeopleModel(
+        image:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        name: 'Elsayed Ahmed'),
+    PeopleModel(
+        image:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        name: 'Elsayed Ahmed'),
+    PeopleModel(
+        image:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        name: 'Elsayed Ahmed'),
+    PeopleModel(
+        image:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        name: 'Elsayed Ahmed'),
+    PeopleModel(
+        image:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        name: 'Elsayed Ahmed'),
+    PeopleModel(
+        image:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        name: 'Elsayed Ahmed'),
+    PeopleModel(
+        image:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        name: 'Elsayed Ahmed'),
   ];
 }

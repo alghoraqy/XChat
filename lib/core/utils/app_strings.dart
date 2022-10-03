@@ -17,4 +17,12 @@ class AppStrings {
 
   /// Messages Screen
   static const String messages = 'Messages';
+
+  /// People Screen
+  static const String people = ' People';
+
+  /// Profile Screen
+  static const String profile = 'Profile';
+  static const String logOut = 'Logout';
+  static const String confirmLogout = 'Are You Sure to Logout?';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xchat/core/utils/app_strings.dart';
+import 'package:xchat/presentation/screens/Sign%20Up/screen/choose_picture_screen.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/screen/signup_screen.dart';
 import 'package:xchat/presentation/screens/home/screen/layout/home_screen.dart';
 import 'package:xchat/presentation/screens/login/screen/login_screen.dart';
@@ -9,6 +10,7 @@ class Routes {
   static const String initialRoute = 'onBoarding';
   static const String loginScreen = 'loginScreen';
   static const String signUpScreen = 'SignUpScreen';
+  static const String choosePicture = 'ChoosePicture';
   static const String homeScreen = 'HomeScreen';
 }
 
@@ -23,6 +25,9 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) => const LoginScreen());
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: (context) => const SignUpScreen());
+      case Routes.choosePicture:
+        return MaterialPageRoute(
+            builder: (context) => const ChoosePictureScreen());
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
 
