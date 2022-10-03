@@ -11,6 +11,9 @@ class Xchat extends StatelessWidget {
       theme: ThemeData(fontFamily: 'Montserrat'),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRoutes.onGenerateRoute,
+      builder: (context, child) {
+        return MediaQuery(data: MediaQuery.of(context).copyWith(textScaleFactor: 1), child: child!);
+      },
       home: startScreen,
     );
   }
