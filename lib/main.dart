@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:xchat/app.dart';
 import 'package:xchat/core/network/local/cach_helper.dart';
 import 'package:xchat/core/utils/constances.dart';
-import 'package:xchat/presentation/screens/Sign%20Up/screen/choose_picture_screen.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/screen/signup_screen.dart';
 import 'package:xchat/presentation/screens/home/screen/layout/home_screen.dart';
 import 'package:xchat/presentation/screens/login/screen/login_screen.dart';
