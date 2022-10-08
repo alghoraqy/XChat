@@ -12,6 +12,7 @@ import 'package:xchat/presentation/components/text_form_field.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/cubit/signup_cubit.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/cubit/signup_states.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/screen/choose_picture_screen.dart';
+import 'package:xchat/presentation/screens/home/screen/layout/home_screen.dart';
 
 import '../../../../core/utils/constances.dart';
 
@@ -38,7 +39,7 @@ class SignUpScreen extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (_) => BlocProvider.value(
                             value: SignUpCubit.get(context),
-                            child: const ChoosePictureScreen(),
+                            child: const HomeScreen(),
                           )));
             });
           } else {

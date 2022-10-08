@@ -29,7 +29,7 @@ void main() async {
       }
     }
   }
-  runApp(const Xchat(
-    startScreen: SignUpScreen(),
+  runApp(Xchat(
+    startScreen: widget!,
   ));
 }

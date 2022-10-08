@@ -8,13 +8,13 @@ import '../../core/utils/app_textstyle.dart';
 import '../../core/utils/responsive.dart';
 import 'message_screen_comp.dart';
 
-class PeopleComponent extends StatelessWidget {
-  final PeopleModel peopleModel;
+class AllUsersComponent extends StatelessWidget {
+  final UserModel userModel;
   final VoidCallback onPressed;
 
-  const PeopleComponent({
+  const AllUsersComponent({
     super.key,
-    required this.peopleModel,
+    required this.userModel,
     required this.onPressed,
   });
 
@@ -38,7 +38,7 @@ class PeopleComponent extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   children: [
                     CircleImage(
-                      image: peopleModel.image,
+                      image: NetworkImage(userModel.image),
                       width: rwidth(context) / 5,
                       hight: rhight(context) / 10,
                       margin: 4,
@@ -65,7 +65,7 @@ class PeopleComponent extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        peopleModel.name,
+                        userModel.userName,
                         style: AppTextStyle.messageTitle,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

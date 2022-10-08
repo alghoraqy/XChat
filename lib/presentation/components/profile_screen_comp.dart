@@ -8,29 +8,36 @@ import '../../core/utils/responsive.dart';
 import 'message_screen_comp.dart';
 
 class ProfileStack extends StatelessWidget {
+  final ImageProvider<Object> image;
+  final VoidCallback onPressed;
+  const ProfileStack({super.key, required this.image, required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        CircleImage(
-          image:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4rsSzLimlQyniEtUV4-1raljzFhS45QBeAw&usqp=CAU',
-          hight: rhight(context) / 4,
+        Container(
+          margin: EdgeInsets.only(left: 2),
+          height: rhight(context) / 4,
           width: rwidth(context) / 2.2,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Image(image: image, fit: BoxFit.cover),
         ),
         Positioned(
           bottom: rhight(context) / 60,
           left: rwidth(context) / 3.8,
           child: MaterialButton(
-            onPressed: () {},
+            onPressed: onPressed,
             height: rhight(context) / 16,
             color: AppColors.textColor.withOpacity(.8),
             elevation: 0,
-            shape: CircleBorder(
+            shape: const CircleBorder(
               side: BorderSide(color: Colors.white, width: 4),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.add_a_photo_outlined,
               color: Colors.white,
               size: 26,
@@ -44,11 +51,11 @@ class ProfileStack extends StatelessWidget {
 
 class ProfileFormField extends StatelessWidget {
   final String hint;
-  //final TextEditingController controller;
+  final TextEditingController controller;
   const ProfileFormField({
     super.key,
     required this.hint,
-    // required this.controller,
+    required this.controller,
   });
   @override
   Widget build(BuildContext context) {
@@ -62,6 +69,7 @@ class ProfileFormField extends StatelessWidget {
             offset: const Offset(4.5, 4))
       ]),
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
@@ -76,7 +84,7 @@ class ProfileFormField extends StatelessWidget {
 
 class ProfileData extends StatelessWidget {
   final String text;
-  ProfileData({required this.text});
+  const ProfileData({required this.text});
   @override
   Widget build(BuildContext context) {
     return Container(

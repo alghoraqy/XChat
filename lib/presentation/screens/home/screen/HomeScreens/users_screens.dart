@@ -75,34 +75,39 @@ class UsersScreen extends StatelessWidget {
               SizedBox(
                 height: rhight(context) / 50,
               ),
-              Expanded(
-                child: AnimationLimiter(
-                  child: ListView.separated(
-                    physics: const BouncingScrollPhysics(),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: rwidth(context) / 30),
-                    itemBuilder: (context, index) {
-                      return AnimationConfiguration.staggeredList(
-                        position: index,
-                        duration: const Duration(milliseconds: 600),
-                        child: SlideAnimation(
-                          child: FadeInAnimation(
-                            child: PeopleComponent(
-                                peopleModel: cubit.people[index],
-                                onPressed: () {}),
-                          ),
+              cubit.allUsers.isNotEmpty
+                  ? Expanded(
+                      child: AnimationLimiter(
+                        child: ListView.separated(
+                          physics: const BouncingScrollPhysics(),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: rwidth(context) / 30),
+                          itemBuilder: (context, index) {
+                            return AnimationConfiguration.staggeredList(
+                              position: index,
+                              duration: const Duration(milliseconds: 600),
+                              child: SlideAnimation(
+                                child: FadeInAnimation(
+                                  child: AllUsersComponent(
+                                      userModel: cubit.allUsers[index],
+                                      onPressed: () {}),
+                                ),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                              height: rhight(context) / 80,
+                            );
+                          },
+                          itemCount: cubit.allUsers.length,
                         ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return SizedBox(
-                        height: rhight(context) / 80,
-                      );
-                    },
-                    itemCount: cubit.people.length,
-                  ),
-                ),
-              ),
+                      ),
+                    )
+                  : Center(
+                      child:
+                          CircularProgressIndicator(color: AppColors.baseColor),
+                    ),
             ],
           ),
         );

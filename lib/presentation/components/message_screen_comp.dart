@@ -54,7 +54,7 @@ class MessageComponent extends StatelessWidget {
             child: Row(
               children: [
                 CircleImage(
-                    image: model.image,
+                    image: NetworkImage(model.image),
                     hight: rhight(context) / 8,
                     width: rwidth(context) / 4),
                 SizedBox(
@@ -114,7 +114,7 @@ class MessageComponent extends StatelessWidget {
 }
 
 class CircleImage extends StatelessWidget {
-  final String image;
+  final ImageProvider<Object> image;
   final double hight;
   final double width;
   double? margin;
@@ -136,7 +136,7 @@ class CircleImage extends StatelessWidget {
       child: FadeInImage(
           placeholder: AssetImage(ImgAsset.loading),
           placeholderFit: BoxFit.cover,
-          image: NetworkImage(image),
+          image: image,
           fit: BoxFit.cover),
     );
   }
