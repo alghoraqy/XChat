@@ -13,7 +13,7 @@ class ChangeBottomNavState extends AppStates {}
 
 /// GET USER PROFILE
 
-class GetUserProfileSucces extends AppStates {}
+class GetUserProfileSuccess extends AppStates {}
 
 class GetUserProfileError extends AppStates {
   final String message;
@@ -34,3 +34,25 @@ class GetAllUsersError extends AppStates {
   final String message;
   GetAllUsersError({required this.message});
 }
+
+/// UPLOAD PROFILE IMGE STATES 
+class UploadProfileImageLoading extends AppStates{}
+class UploadProfileImageSuccess extends AppStates{}
+class UploadProfileImageError extends AppStates{}
+
+
+class UpdateUserProfileLoading extends AppStates{}
+
+/// SEND MESSAGES STATES
+class SendMessageSuccess extends AppStates{} 
+class SendMessageError extends AppStates{} 
+
+/// GEET MEESSAGS STATES 
+class GetMyMessagesSuccess extends AppStates{} 
+class GetMyMessagesError extends AppStates{} 
+
+class ChangeSearchState extends AppStates{} 
+
+
+class CheckInternetSuccess extends AppStates{} 
+

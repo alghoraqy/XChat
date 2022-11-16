@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:lottie/lottie.dart';
 import 'package:xchat/core/utils/app_colors.dart';
 import 'package:xchat/core/utils/app_strings.dart';
 import 'package:xchat/core/utils/app_textstyle.dart';
 import 'package:xchat/core/utils/assets_manager.dart';
 import 'package:xchat/core/utils/responsive.dart';
+import 'package:xchat/core/utils/shared_methods.dart';
 import 'package:xchat/presentation/components/message_screen_comp.dart';
 import 'package:xchat/presentation/components/text_form_field.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_states.dart';
 
 import '../../cubit/app_cubit.dart';
+import 'details_of_message.dart';
 
 class MessagesScreen extends StatelessWidget {
   const MessagesScreen({super.key});
@@ -25,6 +28,7 @@ class MessagesScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
           appBar: AppBar(
+            leadingWidth: 0,
             systemOverlayStyle:
                 const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
             backgroundColor: Colors.white,
@@ -60,35 +64,55 @@ class MessagesScreen extends StatelessWidget {
               SizedBox(
                 height: rhight(context) / 50,
               ),
-              Expanded(
-                child: AnimationLimiter(
-                  child: ListView.separated(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: rwidth(context) / 30),
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return AnimationConfiguration.staggeredList(
-                        position: index,
-                        duration: const Duration(milliseconds: 400),
-                        child: ScaleAnimation(
-                          child: FadeInAnimation(
-                            child: MessageComponent(
-                              model: cubit.messages[index],
-                              onPressed: () {},
-                            ),
-                          ),
+              cubit.searchedUsers.isEmpty
+                  ? Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: rhight(context) / 8),
+                        child: Center(
+                          child: Lottie.asset('assets/lottie/search.json',
+                              height: rhight(context) / 2.05,
+                              fit: BoxFit.cover),
                         ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return SizedBox(
-                        height: rhight(context) / 80,
-                      );
-                    },
-                    itemCount: cubit.messages.length,
-                  ),
-                ),
-              ),
+                      ),
+                    )
+                  : Expanded(
+                      child: AnimationLimiter(
+                        child: ListView.separated(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: rwidth(context) / 30),
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return AnimationConfiguration.staggeredList(
+                              position: index,
+                              duration: const Duration(milliseconds: 400),
+                              child: ScaleAnimation(
+                                child: FadeInAnimation(
+                                  child: MyMessageComponent(
+                                    model: cubit.searchedUsers[index],
+                                    onPressed: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (_) {
+                                        return BlocProvider.value(
+                                            value: AppCubit.get(context),
+                                            child: DetailsOfMessage(
+                                                userModel: cubit
+                                                    .searchedUsers[index]));
+                                      }));
+                                    },
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                              height: rhight(context) / 80,
+                            );
+                          },
+                          itemCount: cubit.searchedUsers.length,
+                        ),
+                      ),
+                    )
             ],
           ),
         );

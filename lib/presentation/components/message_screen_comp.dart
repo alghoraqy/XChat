@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:xchat/models/message_model.dart';
+import 'package:xchat/models/new_message_model.dart';
+import 'package:xchat/models/user_model.dart';
 import '../../core/utils/app_colors.dart';
 import '../../core/utils/app_textstyle.dart';
 import '../../core/utils/assets_manager.dart';
@@ -8,6 +11,7 @@ import '../screens/home/cubit/app_cubit.dart';
 
 class SearchComponent extends StatelessWidget {
   const SearchComponent({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +26,24 @@ class SearchComponent extends StatelessWidget {
         errorMaxLines: 2,
         contentPadding: EdgeInsets.zero,
         hintText: 'Search',
+        
         prefixIcon: Icon(
           Icons.search,
           size: 28,
           color: Colors.black,
         ),
       ),
+      onChanged: (value){
+         AppCubit.get(context).searchUser(AppCubit.get(context).searchController.text);
+      },
     );
   }
 }
 
-class MessageComponent extends StatelessWidget {
-  final MessageModel model;
+class MyMessageComponent extends StatelessWidget {
+  final UserModel model;
   final VoidCallback onPressed;
-  const MessageComponent(
+  const MyMessageComponent(
       {super.key, required this.model, required this.onPressed});
   @override
   Widget build(BuildContext context) {
@@ -66,39 +74,15 @@ class MessageComponent extends StatelessWidget {
                         top: rhight(context) / 80, right: rwidth(context) / 70),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: rwidth(context) / 2,
-                              child: Text(
-                                model.name,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyle.messageTitle,
-                              ),
-                            ),
-                            Container(
-                              width: rwidth(context) / 8,
-                              child: Text(
-                                model.lastDate,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyle.messageBody
-                                    .copyWith(fontSize: 13),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: rhight(context) / 100,
-                        ),
-                        Text(
-                          model.messageBody,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyle.messageBody,
+                        Container(
+                          child: Text(
+                            model.userName,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTextStyle.messageTitle,
+                          ),
                         ),
                       ],
                     ),

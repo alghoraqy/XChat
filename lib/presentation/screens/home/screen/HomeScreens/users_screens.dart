@@ -10,6 +10,8 @@ import 'package:xchat/presentation/components/message_screen_comp.dart';
 import 'package:xchat/presentation/components/users_screen_comp.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_cubit.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_states.dart';
+import 'package:xchat/presentation/screens/home/screen/HomeScreens/details_of_message.dart';
+import 'package:xchat/presentation/screens/home/screen/HomeScreens/messagee_details_screen.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_textstyle.dart';
@@ -31,35 +33,21 @@ class UsersScreen extends StatelessWidget {
             backgroundColor: Colors.white,
             centerTitle: true,
             leadingWidth: rwidth(context) / 5,
-            leading: Padding(
+            leading:cubit.userProfile  !=null? Padding(
               padding: EdgeInsets.only(left: rwidth(context) / 100),
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 clipBehavior: Clip.antiAlias,
-                child: FadeInImage(
-                  placeholder: AssetImage(ImgAsset.loading),
-                  placeholderFit: BoxFit.cover,
-                  image: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4rsSzLimlQyniEtUV4-1raljzFhS45QBeAw&usqp=CAU'),
-                  fit: BoxFit.cover,
-                ),
+                child: Image(image: NetworkImage(cubit.userProfile!.image),fit: BoxFit.cover,)
               ),
-            ),
+            ):SizedBox(),
             title: Text(
               AppStrings.people,
               style: AppTextStyle.title,
             ),
             elevation: 0,
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  ))
-            ],
           ),
           body: Column(
             children: [
@@ -90,7 +78,14 @@ class UsersScreen extends StatelessWidget {
                                 child: FadeInAnimation(
                                   child: AllUsersComponent(
                                       userModel: cubit.allUsers[index],
-                                      onPressed: () {}),
+                                      onPressed: () {
+                                          Navigator.push(context, MaterialPageRoute(
+                                            builder: (_){
+                                            return BlocProvider.value(
+                                value: AppCubit.get(context),
+                                child: DetailsOfMessage(userModel:cubit.allUsers[index]));}));
+                                      },
+                                      ),
                                 ),
                               ),
                             );
@@ -104,10 +99,12 @@ class UsersScreen extends StatelessWidget {
                         ),
                       ),
                     )
-                  : Center(
-                      child:
-                          CircularProgressIndicator(color: AppColors.baseColor),
-                    ),
+                  : Expanded(
+                    child: Center(
+                        child:
+                            CircularProgressIndicator(color: AppColors.baseColor),
+                      ),
+                  ),
             ],
           ),
         );

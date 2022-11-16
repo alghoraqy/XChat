@@ -11,7 +11,7 @@ import 'package:xchat/presentation/screens/home/screen/layout/home_screen.dart';
 import 'package:xchat/presentation/screens/login/screen/login_screen.dart';
 import 'package:xchat/presentation/screens/OnBoard/onboard_screen.dart';
 
-const bool useEmulator = true;
+const bool useEmulator = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
