@@ -11,7 +11,6 @@ import 'package:xchat/presentation/components/button.dart';
 import 'package:xchat/presentation/components/text_form_field.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/cubit/signup_cubit.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/cubit/signup_states.dart';
-import 'package:xchat/presentation/screens/Sign%20Up/screen/choose_picture_screen.dart';
 import 'package:xchat/presentation/screens/home/screen/layout/home_screen.dart';
 
 import '../../../../core/utils/constances.dart';
@@ -55,7 +54,7 @@ class SignUpScreen extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: Colors.white,
                 elevation: 0,
-                systemOverlayStyle: SystemUiOverlayStyle(
+                systemOverlayStyle: const SystemUiOverlayStyle(
                   statusBarColor: Colors.transparent,
                 ),
               ),
@@ -175,16 +174,6 @@ class SignUpScreen extends StatelessWidget {
                                   height: rhight(context) / 20,
                                 ),
                                 MyButton(
-                                  child: state is SignUpLoadingState
-                                      ? Center(
-                                          child: CircularProgressIndicator(
-                                            color: Colors.white,
-                                          ),
-                                        )
-                                      : Text(
-                                          AppStrings.signUp,
-                                          style: AppTextStyle.buttonStyle,
-                                        ),
                                   onPressed: () {
                                     if (cubit.formKey.currentState!
                                         .validate()) {
@@ -199,6 +188,16 @@ class SignUpScreen extends StatelessWidget {
                                   },
                                   hight: rhight(context) / 14,
                                   width: rwidth(context) / 1.2,
+                                  child: state is SignUpLoadingState
+                                      ? const Center(
+                                          child: CircularProgressIndicator(
+                                            color: Colors.white,
+                                          ),
+                                        )
+                                      : const Text(
+                                          AppStrings.signUp,
+                                          style: AppTextStyle.buttonStyle,
+                                        ),
                                 ),
                                 SizedBox(
                                   height: rhight(context) / 80,

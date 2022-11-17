@@ -1,8 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -14,6 +12,7 @@ import 'package:xchat/models/user_model.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_cubit.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_states.dart';
 
+// ignore: must_be_immutable
 class DetailsOfMessage extends StatefulWidget {
   UserModel userModel;
   DetailsOfMessage({super.key, required this.userModel});
@@ -68,12 +67,12 @@ class _DetailsOfMessageState extends State<DetailsOfMessage> {
                         Container(
                           height: rhight(context) / 15,
                           width: rwidth(context) / 7,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                           ),
                           clipBehavior: Clip.antiAlias,
                           child: Image(
-                            image: NetworkImage(widget.userModel.image),
+                            image: CachedNetworkImageProvider(widget.userModel.image),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -94,7 +93,7 @@ class _DetailsOfMessageState extends State<DetailsOfMessage> {
                   body: Padding(
                     padding: EdgeInsets.only(top: rhight(context) / 70),
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(50),
                             topRight: Radius.circular(50),
@@ -146,12 +145,12 @@ class _DetailsOfMessageState extends State<DetailsOfMessage> {
                                 minLines: 1,
                                 maxLines: 5,
                                 autofocus: false,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18,
                                 ),
                                 decoration: InputDecoration(
                                   hintText: 'Type Your Message Here ...',
-                                  hintStyle: TextStyle(
+                                  hintStyle: const TextStyle(
                                     fontSize: 15,
                                   ),
                                   contentPadding: EdgeInsets.symmetric(
@@ -165,26 +164,27 @@ class _DetailsOfMessageState extends State<DetailsOfMessage> {
                                   suffixIcon: MaterialButton(
                                     onPressed: () {
                                       if (cubit.sendMessageController.text
-                                          .isNotEmpty)
+                                          .isNotEmpty) {
                                         cubit.sendMessage(
                                             receiverId: widget.userModel.uId,
                                             text: cubit
                                                 .sendMessageController.text,
                                             dateTime:
                                                 DateTime.now().toString());
+                                      }
                                     },
-                                    child: Icon(
-                                      Icons.send_rounded,
-                                      size: 35,
-                                      color: Colors.white,
-                                    ),
                                     height: rhight(context) / 11.5,
                                     color: AppColors.baseColor,
-                                    shape: RoundedRectangleBorder(
+                                    shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(15),
                                       bottomRight: Radius.circular(15),
                                     )),
+                                    child: const Icon(
+                                      Icons.send_rounded,
+                                      size: 35,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -218,7 +218,7 @@ class _DetailsOfMessageState extends State<DetailsOfMessage> {
                   Container(
                     height: rhight(context) / 15,
                     width: rwidth(context) / 7,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
                     clipBehavior: Clip.antiAlias,
@@ -244,7 +244,7 @@ class _DetailsOfMessageState extends State<DetailsOfMessage> {
             body: Padding(
               padding: EdgeInsets.only(top: rhight(context) / 70),
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(50),
                       topRight: Radius.circular(50),
@@ -281,7 +281,7 @@ Widget _buildMessage(context, {required NewMessageModel message}) {
           padding: EdgeInsets.symmetric(
               horizontal: rwidth(context) / 50, vertical: rhight(context) / 80),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -313,7 +313,7 @@ Widget _buildMyMessage(context, {required NewMessageModel message}) {
           padding: EdgeInsets.symmetric(
               horizontal: rwidth(context) / 50, vertical: rhight(context) / 80),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),

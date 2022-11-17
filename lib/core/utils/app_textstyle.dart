@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:xchat/core/utils/app_colors.dart';
-import 'package:xchat/core/utils/hex_color.dart';
 
 class AppTextStyle {
   static const TextStyle textAppNamestyle = TextStyle(

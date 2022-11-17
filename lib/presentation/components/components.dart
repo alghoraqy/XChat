@@ -4,6 +4,8 @@ import '../../core/utils/app_colors.dart';
 import '../../core/utils/responsive.dart';
 
 class LoginComponent extends StatelessWidget {
+  const LoginComponent({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -22,7 +24,7 @@ class LoginComponent extends StatelessWidget {
           child: Container(
             height: rhight(context) / 7,
             width: rwidth(context) / 3.8,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
             ),
@@ -41,8 +43,8 @@ class LoginComponent extends StatelessWidget {
 class CustomClipPath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    double w = size.width;
-    double h = size.height;
+    // double w = size.width;
+    // double h = size.height;
 
     Path path0 = Path();
     path0.moveTo(0, 0);

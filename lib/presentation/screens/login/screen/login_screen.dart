@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Column(
         children: [
-          LoginComponent(),
+          const LoginComponent(),
           BlocProvider(
             create: (BuildContext context) {
               return LoginCubit();
@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                   SaveDataToPrefs.saveData(key: 'uId', value: state.uId)
                       .then((value) {
                     Constances.uId = state.uId;
-                    print(Constances.uId);
+                    debugPrint(Constances.uId);
                     showToast(message: 'Login Success', color: Colors.green);
                     navigateAndFinish(context, Routes.homeScreen);
                   });
@@ -135,16 +135,6 @@ class LoginScreen extends StatelessWidget {
                                   height: rhight(context) / 20,
                                 ),
                                 MyButton(
-                                  child: state is LoginLoadingState
-                                      ? const Center(
-                                          child: CircularProgressIndicator(
-                                            color: Colors.white,
-                                          ),
-                                        )
-                                      : const Text(
-                                          AppStrings.login,
-                                          style: AppTextStyle.buttonStyle,
-                                        ),
                                   onPressed: () {
                                     if (cubit.formKey.currentState!
                                         .validate()) {
@@ -156,6 +146,16 @@ class LoginScreen extends StatelessWidget {
                                   },
                                   hight: rhight(context) / 14,
                                   width: rwidth(context) / 1.2,
+                                  child: state is LoginLoadingState
+                                      ? const Center(
+                                          child: CircularProgressIndicator(
+                                            color: Colors.white,
+                                          ),
+                                        )
+                                      : const Text(
+                                          AppStrings.login,
+                                          style: AppTextStyle.buttonStyle,
+                                        ),
                                 ),
                                 SizedBox(
                                   height: rhight(context) / 50,

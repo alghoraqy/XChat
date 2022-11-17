@@ -23,7 +23,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(ImgAsset.backgroung), fit: BoxFit.cover)),
       child: Scaffold(
@@ -36,7 +36,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               padding: EdgeInsets.only(top: rhight(context) / 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Icon(
                     Icons.message_outlined,
                     color: Colors.white,
@@ -58,7 +58,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 children: [
                   Container(
                     height: rhight(context) / 2.4,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(25),
                             topRight: Radius.circular(25)),
@@ -69,7 +69,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           horizontal: rwidth(context) / 15),
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             AppStrings.onBoardingText,
                             textAlign: TextAlign.center,
                             style: AppTextStyle.onBoardingText,
@@ -77,7 +77,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           SizedBox(
                             height: rhight(context) / 50,
                           ),
-                          Text(
+                          const Text(
                             AppStrings.onBoardingText2,
                             textAlign: TextAlign.center,
                             style: AppTextStyle.onBoardingText2,
@@ -85,7 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           SizedBox(
                             height: rhight(context) / 20,
                           ),
-                          Container(
+                          SizedBox(
                             width: rwidth(context) / 1.3,
                             child: SwipeableButtonView(
                                 onFinish: () async {
@@ -102,7 +102,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 },
                                 activeColor: Colors.blue.shade900,
                                 isFinished: isFinished,
-                                buttonWidget: Container(
+                                buttonWidget: SizedBox(
                                   height: rhight(context) / 8,
                                   child: Icon(
                                     Icons.keyboard_double_arrow_right_outlined,

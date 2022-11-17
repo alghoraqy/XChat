@@ -9,6 +9,7 @@ class Xchat extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Montserrat'),
+      title: 'XChat',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRoutes.onGenerateRoute,
       builder: (context, child) {

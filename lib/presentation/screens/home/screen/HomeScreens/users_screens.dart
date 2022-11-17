@@ -1,17 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:xchat/core/utils/app_colors.dart';
-import 'package:xchat/core/utils/assets_manager.dart';
 import 'package:xchat/core/utils/responsive.dart';
-import 'package:xchat/main.dart';
-import 'package:xchat/presentation/components/message_screen_comp.dart';
 import 'package:xchat/presentation/components/users_screen_comp.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_cubit.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_states.dart';
 import 'package:xchat/presentation/screens/home/screen/HomeScreens/details_of_message.dart';
-import 'package:xchat/presentation/screens/home/screen/HomeScreens/messagee_details_screen.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_textstyle.dart';
@@ -36,13 +33,13 @@ class UsersScreen extends StatelessWidget {
             leading:cubit.userProfile  !=null? Padding(
               padding: EdgeInsets.only(left: rwidth(context) / 100),
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 clipBehavior: Clip.antiAlias,
-                child: Image(image: NetworkImage(cubit.userProfile!.image),fit: BoxFit.cover,)
+                child: Image(image: CachedNetworkImageProvider(cubit.userProfile!.image),fit: BoxFit.cover,)
               ),
-            ):SizedBox(),
+            ):const SizedBox(),
             title: Text(
               AppStrings.people,
               style: AppTextStyle.title,
@@ -54,7 +51,7 @@ class UsersScreen extends StatelessWidget {
               Container(
                 height: rhight(context) / 25,
                 width: rwidth(context),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(50),
                         bottomRight: Radius.circular(50)),

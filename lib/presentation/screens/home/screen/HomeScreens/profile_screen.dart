@@ -227,6 +227,7 @@ class ProfileScreen extends StatelessWidget {
                                           ]),
                                       child: MyButton(
                                         onPressed: () {
+                                          cubit.profileImage =null;
                                           cubit.userNameController.text =
                                               cubit.userProfile!.userName;
                                           cubit.emailController.text =
@@ -362,11 +363,12 @@ class ProfileScreen extends StatelessWidget {
                                                                               ]),
                                                                               child: MyButton(
                                                                                   onPressed: () {
+                                                                                    cubit.load = false;
                                                                                     cubit.updateUser(context);
                                                                                   },
                                                                                   hight: rhight(context) / 14,
                                                                                   width: rwidth(context) / 1.5,
-                                                                                  child: state is UploadProfileImageLoading || state is UpdateUserProfileLoading
+                                                                                  child:cubit.load == false
                                                                                       ? Center(
                                                                                           child: CircularProgressIndicator(color: Colors.white),
                                                                                         )

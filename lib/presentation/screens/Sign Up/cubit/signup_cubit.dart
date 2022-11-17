@@ -3,11 +3,9 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:xchat/core/utils/assets_manager.dart';
-import 'package:xchat/core/utils/core_component.dart';
 import 'package:xchat/models/user_model.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/cubit/signup_states.dart';
 
@@ -37,7 +35,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
       password: password,
     )
         .then((value) {
-      print(value.user!.email);
+      debugPrint(value.user!.email);
       createUser(
         userName: userName,
         email: email,

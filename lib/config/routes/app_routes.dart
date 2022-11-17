@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:xchat/core/utils/app_strings.dart';
-import 'package:xchat/presentation/screens/Sign%20Up/screen/choose_picture_screen.dart';
 import 'package:xchat/presentation/screens/Sign%20Up/screen/signup_screen.dart';
 import 'package:xchat/presentation/screens/home/screen/layout/home_screen.dart';
 import 'package:xchat/presentation/screens/login/screen/login_screen.dart';

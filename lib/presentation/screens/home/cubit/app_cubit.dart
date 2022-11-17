@@ -60,39 +60,11 @@ class AppCubit extends Cubit<AppStates> {
     const ProfileScreen(),
   ];
 
-  List<MessageModel> messages = [
-    MessageModel(
-      image:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4rsSzLimlQyniEtUV4-1raljzFhS45QBeAw&usqp=CAU',
-      name: 'mahmoud elsayed',
-      messageBody: 'asssssssssda asdasd asdasd asda',
-      lastDate: '5 days',
-    ),
-    MessageModel(
-      image:
-          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-      name: 'marwa mohamed',
-      messageBody: 'asdasd dasdas asda',
-      lastDate: '18 days',
-    ),
-    MessageModel(
-      image:
-          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-      name: 'ahmed mohamed',
-      messageBody: 'asddddddddasd asdasd ',
-      lastDate: '10 days',
-    ),
-    MessageModel(
-      image:
-          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-      name: 'ahmed mohamed',
-      messageBody: 'asddddddddasd asdasd ',
-      lastDate: '10 days',
-    ),
-  ];
+
 
   /// GET USER PROFILE
   UserModel? userProfile;
+  bool load=true;
   Future getUserProfile() async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -186,6 +158,7 @@ class AppCubit extends Cubit<AppStates> {
         .update(model.tomap())
         .then((value) {
       getUserProfile().then((value) {
+        load = true;
         Navigator.pop(context);
       });
     }).catchError((error) {
@@ -195,7 +168,8 @@ class AppCubit extends Cubit<AppStates> {
 
   /// UPDATE USER
   Future updateUser(context) async {
-    if (state is PickProfileImageSuccess) {
+    if (profileImage != null) {
+      print(profileImage!.path);
       await uploadProfileImage(context);
     } else {
       await updateUserProfile(context);

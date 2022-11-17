@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:xchat/models/message_model.dart';
-import 'package:xchat/models/new_message_model.dart';
 import 'package:xchat/models/user_model.dart';
 import '../../core/utils/app_colors.dart';
 import '../../core/utils/app_textstyle.dart';
@@ -27,7 +25,7 @@ class SearchComponent extends StatelessWidget {
         contentPadding: EdgeInsets.zero,
         hintText: 'Search',
         
-        prefixIcon: Icon(
+        prefixIcon: const Icon(
           Icons.search,
           size: 28,
           color: Colors.black,
@@ -62,7 +60,7 @@ class MyMessageComponent extends StatelessWidget {
             child: Row(
               children: [
                 CircleImage(
-                    image: NetworkImage(model.image),
+                    image: CachedNetworkImageProvider(model.image),
                     hight: rhight(context) / 8,
                     width: rwidth(context) / 4),
                 SizedBox(
@@ -76,13 +74,11 @@ class MyMessageComponent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          child: Text(
-                            model.userName,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppTextStyle.messageTitle,
-                          ),
+                        Text(
+                          model.userName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyle.messageTitle,
                         ),
                       ],
                     ),
@@ -97,13 +93,14 @@ class MyMessageComponent extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class CircleImage extends StatelessWidget {
   final ImageProvider<Object> image;
   final double hight;
   final double width;
   double? margin;
   CircleImage(
-      {required this.image,
+      {super.key, required this.image,
       required this.hight,
       required this.width,
       this.margin});
@@ -113,12 +110,12 @@ class CircleImage extends StatelessWidget {
       margin: EdgeInsets.only(left: margin ?? 2),
       height: hight,
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         shape: BoxShape.circle,
       ),
       clipBehavior: Clip.antiAlias,
       child: FadeInImage(
-          placeholder: AssetImage(ImgAsset.loading),
+          placeholder: const AssetImage(ImgAsset.loading),
           placeholderFit: BoxFit.cover,
           image: image,
           fit: BoxFit.cover),

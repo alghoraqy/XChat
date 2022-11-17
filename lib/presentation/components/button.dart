@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:xchat/core/utils/app_colors.dart';
-import 'package:xchat/core/utils/app_strings.dart';
-
-import '../../core/utils/app_textstyle.dart';
 
 class MyButton extends StatelessWidget {
   final Widget child;
@@ -10,7 +7,7 @@ class MyButton extends StatelessWidget {
   final double hight;
   final double width;
 
-  MyButton({
+  const MyButton({super.key, 
     required this.child,
     required this.onPressed,
     required this.hight,

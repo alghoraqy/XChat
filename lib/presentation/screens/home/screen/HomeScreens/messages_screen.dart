@@ -6,11 +6,8 @@ import 'package:lottie/lottie.dart';
 import 'package:xchat/core/utils/app_colors.dart';
 import 'package:xchat/core/utils/app_strings.dart';
 import 'package:xchat/core/utils/app_textstyle.dart';
-import 'package:xchat/core/utils/assets_manager.dart';
 import 'package:xchat/core/utils/responsive.dart';
-import 'package:xchat/core/utils/shared_methods.dart';
 import 'package:xchat/presentation/components/message_screen_comp.dart';
-import 'package:xchat/presentation/components/text_form_field.dart';
 import 'package:xchat/presentation/screens/home/cubit/app_states.dart';
 
 import '../../cubit/app_cubit.dart';
@@ -43,7 +40,7 @@ class MessagesScreen extends StatelessWidget {
               Container(
                 height: rhight(context) / 10,
                 width: rwidth(context),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
@@ -53,7 +50,7 @@ class MessagesScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       width: rwidth(context) / 1.2,
                       height: rhight(context) / 19,
                       child: const SearchComponent(),

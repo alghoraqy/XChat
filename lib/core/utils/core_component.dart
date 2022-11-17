@@ -26,5 +26,4 @@ Future myDialog(context, {required Widget myChild}) {
           child: myChild,
         );
       });
-  ;
 }

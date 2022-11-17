@@ -1,6 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:xchat/models/user_model.dart';
 
 import '../../core/utils/app_colors.dart';
@@ -38,7 +37,7 @@ class AllUsersComponent extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   children: [
                     CircleImage(
-                      image: NetworkImage(userModel.image),
+                      image: CachedNetworkImageProvider(userModel.image),
                       width: rwidth(context) / 5,
                       hight: rhight(context) / 10,
                       margin: 4,
