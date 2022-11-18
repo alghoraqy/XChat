@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:xchat/core/utils/app_colors.dart';
 import 'package:xchat/core/utils/responsive.dart';
@@ -35,21 +36,21 @@ class HomeScreen extends StatelessWidget {
                         )),
                 bottomNavigationBar: CurvedNavigationBar(
                   items: [
-                    Icon(
-                      Icons.people_alt_outlined,
-                      size: 30,
+                    FaIcon(
+                      FontAwesomeIcons.users,
+                      size: 25,
                       color:
                           cubit.startIndex == 0 ? Colors.black : Colors.white,
                     ),
-                    Icon(
-                      Icons.message_outlined,
-                      size: 30,
+                    FaIcon(
+                      FontAwesomeIcons.magnifyingGlass,
+                      size: 25,
                       color:
                           cubit.startIndex == 1 ? Colors.black : Colors.white,
                     ),
-                    Icon(
-                      Icons.person_outlined,
-                      size: 30,
+                    FaIcon(
+                      FontAwesomeIcons.userTie,
+                      size: 25,
                       color:
                           cubit.startIndex == 2 ? Colors.black : Colors.white,
                     ),
